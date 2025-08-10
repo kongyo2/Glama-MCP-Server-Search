@@ -11,16 +11,7 @@ This server provides tools to search for MCP servers, get detailed information a
 - **Browse Attributes**: Explore available filtering attributes for MCP servers
 - **Pagination Support**: Handle large result sets with cursor-based pagination
 
-## Development
 
-To get started, clone the repository and install the dependencies.
-
-```bash
-git clone https://github.com/punkpeye/fastmcp-boilerplate.git
-cd fastmcp-boilerplate
-npm install
-npm run dev
-```
 
 ## Available Tools
 
