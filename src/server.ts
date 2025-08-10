@@ -10,7 +10,10 @@ const server = new FastMCP({
 const GLAMA_API_BASE = "https://glama.ai/api/mcp";
 
 // Helper function to make API requests
-async function makeGlamaRequest(endpoint: string, params?: Record<string, string>) {
+async function makeGlamaRequest(
+  endpoint: string,
+  params?: Record<string, string>,
+) {
   const url = new URL(`${GLAMA_API_BASE}${endpoint}`);
 
   if (params) {
@@ -24,7 +27,9 @@ async function makeGlamaRequest(endpoint: string, params?: Record<string, string
   const response = await fetch(url.toString());
 
   if (!response.ok) {
-    throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+    throw new Error(
+      `API request failed: ${response.status} ${response.statusText}`,
+    );
   }
 
   return response.json();
@@ -36,7 +41,8 @@ server.addTool({
     readOnlyHint: true, // This tool only reads data
     title: "Search MCP Servers",
   },
-  description: "Search for MCP servers in the Glama directory using free text queries",
+  description:
+    "Search for MCP servers in the Glama directory using free text queries",
   execute: async (args) => {
     try {
       const params: Record<string, string> = {};
@@ -60,9 +66,23 @@ server.addTool({
   },
   name: "search_mcp_servers",
   parameters: z.object({
-    query: z.string().optional().describe("Free text search query (e.g., 'hacker news', 'database', 'weather')"),
-    first: z.number().min(1).max(100).default(10).optional().describe("Number of results to return (1-100, default: 10)"),
-    after: z.string().optional().describe("Cursor for pagination to get results after this point"),
+    after: z
+      .string()
+      .optional()
+      .describe("Cursor for pagination to get results after this point"),
+    first: z
+      .number()
+      .min(1)
+      .max(100)
+      .default(10)
+      .optional()
+      .describe("Number of results to return (1-100, default: 10)"),
+    query: z
+      .string()
+      .optional()
+      .describe(
+        "Free text search query (e.g., 'hacker news', 'database', 'weather')",
+      ),
   }),
 });
 
@@ -72,10 +92,13 @@ server.addTool({
     readOnlyHint: true,
     title: "Get MCP Server Details",
   },
-  description: "Get detailed information about a specific MCP server by namespace and slug",
+  description:
+    "Get detailed information about a specific MCP server by namespace and slug",
   execute: async (args) => {
     try {
-      const result = await makeGlamaRequest(`/v1/servers/${args.namespace}/${args.slug}`);
+      const result = await makeGlamaRequest(
+        `/v1/servers/${args.namespace}/${args.slug}`,
+      );
       return JSON.stringify(result, null, 2);
     } catch (error) {
       return `Error getting MCP server details: ${error instanceof Error ? error.message : String(error)}`;
@@ -83,8 +106,16 @@ server.addTool({
   },
   name: "get_mcp_server_details",
   parameters: z.object({
-    namespace: z.string().describe("The namespace/organization of the MCP server (e.g., 'microsoft', 'openai')"),
-    slug: z.string().describe("The slug/name of the MCP server (e.g., 'playwright-mcp', 'gpt-mcp')"),
+    namespace: z
+      .string()
+      .describe(
+        "The namespace/organization of the MCP server (e.g., 'microsoft', 'openai')",
+      ),
+    slug: z
+      .string()
+      .describe(
+        "The slug/name of the MCP server (e.g., 'playwright-mcp', 'gpt-mcp')",
+      ),
   }),
 });
 
@@ -94,7 +125,8 @@ server.addTool({
     readOnlyHint: true,
     title: "Get MCP Server Attributes",
   },
-  description: "Get available attributes that can be used to filter MCP servers",
+  description:
+    "Get available attributes that can be used to filter MCP servers",
   execute: async () => {
     try {
       const result = await makeGlamaRequest("/v1/attributes");

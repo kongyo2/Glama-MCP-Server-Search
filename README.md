@@ -11,19 +11,20 @@ This server provides tools to search for MCP servers, get detailed information a
 - **Browse Attributes**: Explore available filtering attributes for MCP servers
 - **Pagination Support**: Handle large result sets with cursor-based pagination
 
-
-
 ## Available Tools
 
 ### 1. search_mcp_servers
+
 Search for MCP servers in the Glama directory using free text queries.
 
 **Parameters:**
+
 - `query` (optional): Free text search query (e.g., "database", "weather", "hacker news")
 - `first` (optional): Number of results to return (1-100, default: 10)
 - `after` (optional): Cursor for pagination
 
 **Example:**
+
 ```json
 {
   "query": "database",
@@ -32,13 +33,16 @@ Search for MCP servers in the Glama directory using free text queries.
 ```
 
 ### 2. get_mcp_server_details
+
 Get detailed information about a specific MCP server.
 
 **Parameters:**
+
 - `namespace`: The namespace/organization (e.g., "microsoft", "openai")
 - `slug`: The server slug/name (e.g., "playwright-mcp")
 
 **Example:**
+
 ```json
 {
   "namespace": "microsoft",
@@ -47,6 +51,7 @@ Get detailed information about a specific MCP server.
 ```
 
 ### 3. get_mcp_server_attributes
+
 Get available attributes that can be used to filter MCP servers.
 
 **Parameters:** None
@@ -88,5 +93,3 @@ Use `npm run format` to format the code.
 ```bash
 npm run format
 ```
-
-

@@ -1,10 +1,13 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 
 // Base URL for Glama MCP API
 const GLAMA_API_BASE = "https://glama.ai/api/mcp";
 
 // Helper function to make API requests (same as in server.ts)
-async function makeGlamaRequest(endpoint: string, params?: Record<string, string>) {
+async function makeGlamaRequest(
+  endpoint: string,
+  params?: Record<string, string>,
+) {
   const url = new URL(`${GLAMA_API_BASE}${endpoint}`);
 
   if (params) {
@@ -18,7 +21,9 @@ async function makeGlamaRequest(endpoint: string, params?: Record<string, string
   const response = await fetch(url.toString());
 
   if (!response.ok) {
-    throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+    throw new Error(
+      `API request failed: ${response.status} ${response.statusText}`,
+    );
   }
 
   return response.json();
@@ -27,8 +32,8 @@ async function makeGlamaRequest(endpoint: string, params?: Record<string, string
 describe("Glama MCP API Integration Tests", () => {
   it("should search for MCP servers successfully", async () => {
     const result = await makeGlamaRequest("/v1/servers", {
+      first: "5",
       query: "database",
-      first: "5"
     });
 
     expect(result).toHaveProperty("servers");
@@ -67,7 +72,9 @@ describe("Glama MCP API Integration Tests", () => {
 
     if (searchResult.servers.length > 0) {
       const server = searchResult.servers[0];
-      const detailResult = await makeGlamaRequest(`/v1/servers/${server.namespace}/${server.slug}`);
+      const detailResult = await makeGlamaRequest(
+        `/v1/servers/${server.namespace}/${server.slug}`,
+      );
 
       expect(detailResult).toHaveProperty("id");
       expect(detailResult).toHaveProperty("name");
@@ -86,8 +93,8 @@ describe("Glama MCP API Integration Tests", () => {
 
     if (firstPage.pageInfo.hasNextPage) {
       const secondPage = await makeGlamaRequest("/v1/servers", {
+        after: firstPage.pageInfo.endCursor,
         first: "2",
-        after: firstPage.pageInfo.endCursor
       });
 
       expect(secondPage.servers).toHaveLength(2);
@@ -97,8 +104,8 @@ describe("Glama MCP API Integration Tests", () => {
 
   it("should handle search queries correctly", async () => {
     const weatherResults = await makeGlamaRequest("/v1/servers", {
+      first: "5",
       query: "weather",
-      first: "5"
     });
 
     expect(weatherResults).toHaveProperty("servers");
@@ -106,9 +113,10 @@ describe("Glama MCP API Integration Tests", () => {
 
     // Check if results are relevant to weather (if any results found)
     if (weatherResults.servers.length > 0) {
-      const hasWeatherRelated = weatherResults.servers.some(server =>
-        server.name.toLowerCase().includes("weather") ||
-        server.description.toLowerCase().includes("weather")
+      const hasWeatherRelated = weatherResults.servers.some(
+        (server) =>
+          server.name.toLowerCase().includes("weather") ||
+          server.description.toLowerCase().includes("weather"),
       );
       // Note: This might not always be true due to search algorithm, so we just check structure
       expect(typeof hasWeatherRelated).toBe("boolean");
@@ -117,8 +125,8 @@ describe("Glama MCP API Integration Tests", () => {
 
   it("should handle empty search results gracefully", async () => {
     const result = await makeGlamaRequest("/v1/servers", {
+      first: "5",
       query: "veryrareandunlikelytomatchanything12345",
-      first: "5"
     });
 
     expect(result).toHaveProperty("servers");
