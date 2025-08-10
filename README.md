@@ -1,8 +1,15 @@
-# FastMCP Boilerplate
+# Glama MCP Server Search
 
-A boilerplate for [FastMCP](https://github.com/punkpeye/fastmcp).
+An MCP server for searching and exploring MCP servers from the [Glama MCP directory](https://glama.ai/mcp/servers).
 
-This boilerplate is a good starting point for building an MCP server. It includes a basic setup for testing, linting, formatting, and publishing to NPM.
+This server provides tools to search for MCP servers, get detailed information about specific servers, and explore available server attributes using the Glama MCP API.
+
+## Features
+
+- **Search MCP Servers**: Search the Glama directory using free text queries
+- **Get Server Details**: Retrieve detailed information about specific MCP servers
+- **Browse Attributes**: Explore available filtering attributes for MCP servers
+- **Pagination Support**: Handle large result sets with cursor-based pagination
 
 ## Development
 
@@ -15,34 +22,63 @@ npm install
 npm run dev
 ```
 
-> [!NOTE]
-> If you are starting a new project, you may want to fork [fastmcp-boilerplate](https://github.com/punkpeye/fastmcp-boilerplate) and start from there.
+## Available Tools
+
+### 1. search_mcp_servers
+Search for MCP servers in the Glama directory using free text queries.
+
+**Parameters:**
+- `query` (optional): Free text search query (e.g., "database", "weather", "hacker news")
+- `first` (optional): Number of results to return (1-100, default: 10)
+- `after` (optional): Cursor for pagination
+
+**Example:**
+```json
+{
+  "query": "database",
+  "first": 5
+}
+```
+
+### 2. get_mcp_server_details
+Get detailed information about a specific MCP server.
+
+**Parameters:**
+- `namespace`: The namespace/organization (e.g., "microsoft", "openai")
+- `slug`: The server slug/name (e.g., "playwright-mcp")
+
+**Example:**
+```json
+{
+  "namespace": "microsoft",
+  "slug": "playwright-mcp"
+}
+```
+
+### 3. get_mcp_server_attributes
+Get available attributes that can be used to filter MCP servers.
+
+**Parameters:** None
+
+## Usage Examples
 
 ### Start the server
-
-If you simply want to start the server, you can use the `start` script.
 
 ```bash
 npm run start
 ```
 
-However, you can also interact with the server using the `dev` script.
+### Development mode with CLI interaction
 
 ```bash
 npm run dev
 ```
 
-This will start the server and allow you to interact with it using CLI.
-
 ### Testing
-
-A good MCP server should have tests. However, you don't need to test the MCP server itself, but rather the tools you implement.
 
 ```bash
 npm run test
 ```
-
-In the case of this boilerplate, we only test the implementation of the `add` tool.
 
 ### Linting
 

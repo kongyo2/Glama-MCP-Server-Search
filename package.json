@@ -1,7 +1,7 @@
 {
-  "name": "fastmcp-boilerplate",
+  "name": "glama-mcp-server-search",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "main": "dist/server.js",
   "scripts": {
     "build": "tsc",
     "start": "tsx src/server.ts",
@@ -13,7 +13,9 @@
   "keywords": [
     "fastmcp",
     "mcp",
-    "boilerplate"
+    "glama",
+    "search",
+    "server-directory"
   ],
   "repository": {
     "url": "https://github.com/punkpeye/fastmcp-boilerplate"
@@ -22,7 +24,7 @@
   "homepage": "https://glama.ai/mcp",
   "type": "module",
   "license": "MIT",
-  "description": "A boilerplate for FastMCP",
+  "description": "MCP server for searching Glama MCP server directory",
   "dependencies": {
     "axios": "^1.7.9",
     "fastmcp": "^1.27.3",
