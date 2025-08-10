@@ -98,13 +98,4 @@ Use `npm run format` to format the code.
 npm run format
 ```
 
-### GitHub Actions
 
-This repository has a GitHub Actions workflow that runs linting, formatting, tests, and publishes package updates to NPM using [semantic-release](https://semantic-release.gitbook.io/semantic-release/).
-
-In order to use this workflow, you need to:
-
-1. Add `NPM_TOKEN` to the repository secrets
-   1. [Create a new automation token](https://www.npmjs.com/settings/punkpeye/tokens/new)
-   2. Add token as `NPM_TOKEN` environment secret (Settings → Secrets and Variables → Actions → "Manage environment secrets" → "release" → Add environment secret)
-1. Grant write access to the workflow (Settings → Actions → General → Workflow permissions → "Read and write permissions")
