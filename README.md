@@ -1,6 +1,10 @@
 # Glama MCP Server Search
 [![smithery badge](https://smithery.ai/badge/@kongyo2/glama-mcp-server-search)](https://smithery.ai/server/@kongyo2/glama-mcp-server-search)
 
+<a href="https://glama.ai/mcp/servers/@kongyo2/Glama-MCP-Server-Search">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@kongyo2/Glama-MCP-Server-Search/badge" />
+</a>
+
 An MCP server for searching and exploring MCP servers from the [Glama MCP directory](https://glama.ai/mcp/servers).
 
 This server provides tools to search for MCP servers, get detailed information about specific servers, and explore available server attributes using the Glama MCP API.
