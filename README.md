@@ -1,4 +1,5 @@
 # Glama MCP Server Search
+[![smithery badge](https://smithery.ai/badge/@kongyo2/glama-mcp-server-search)](https://smithery.ai/server/@kongyo2/glama-mcp-server-search)
 
 An MCP server for searching and exploring MCP servers from the [Glama MCP directory](https://glama.ai/mcp/servers).
 
@@ -93,3 +94,4 @@ Use `npm run format` to format the code.
 ```bash
 npm run format
 ```
+
