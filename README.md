@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/kongyo2-glama-mcp-server-search-badge.png)](https://mseep.ai/app/kongyo2-glama-mcp-server-search)
+
 # Glama MCP Server Search
 [![smithery badge](https://smithery.ai/badge/@kongyo2/glama-mcp-server-search)](https://smithery.ai/server/@kongyo2/glama-mcp-server-search)
 
